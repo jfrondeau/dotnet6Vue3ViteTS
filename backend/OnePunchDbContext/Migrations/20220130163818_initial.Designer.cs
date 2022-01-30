@@ -11,8 +11,8 @@ using OnePunchDbContext;
 namespace OnePunchDbContext.Migrations
 {
     [DbContext(typeof(OnePunchContext))]
-    [Migration("20220130015929_test")]
-    partial class test
+    [Migration("20220130163818_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
