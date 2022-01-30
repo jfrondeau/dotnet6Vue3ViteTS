@@ -23,8 +23,8 @@ onMounted(async () => {
   console.log("data fetched: ", data.value)
 })
 
-function formatDate(d: string) {
-  return d.replace(/T|Z/g, ' ');
+function formatDate(d: Date) {
+  return d.toString().replace(/T|Z/g, ' ');
 }
 </script>
 
