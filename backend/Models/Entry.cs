@@ -1,13 +1,15 @@
-﻿namespace backend.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace backend.Models
 {
-    public class Record
+    public class Entry
     {
         public int Id { get; set; }
 
         /// <summary>
         /// Datetime of the record punch
         /// </summary>
-        public DateTimeOffset RecordAt { get; set; } = DateTimeOffset.Now;
+        public DateTimeOffset PunchAt { get; set; } = DateTimeOffset.Now;
 
         /// <summary>
         /// If the record represent an entry or exit

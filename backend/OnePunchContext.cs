@@ -19,6 +19,6 @@ namespace OnePunch
             }
         }
 
-        public DbSet<Record> Records { get; set; }
+        public DbSet<Entry> Entries { get; set; }
     }
 }
