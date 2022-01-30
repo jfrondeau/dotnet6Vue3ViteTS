@@ -4,22 +4,22 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OnePunch;
+using OnePunchDbContext;
 
 #nullable disable
 
-namespace OnePunch.Migrations
+namespace OnePunchDbContext.Migrations
 {
     [DbContext(typeof(OnePunchContext))]
-    [Migration("20220129185510_test timestamp")]
-    partial class testtimestamp
+    [Migration("20220130015929_test")]
+    partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.1");
 
-            modelBuilder.Entity("backend.Models.Record", b =>
+            modelBuilder.Entity("OnePunchDbContext.Models.Orotime", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -28,21 +28,15 @@ namespace OnePunch.Migrations
                     b.Property<bool>("IsIn")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTimeOffset>("RecordAt")
+                    b.Property<DateTimeOffset>("PunchAt")
                         .HasColumnType("TEXT");
-
-                    b.Property<byte[]>("RecordAt2")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("BLOB");
 
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Record");
+                    b.ToTable("Orotime");
                 });
 #pragma warning restore 612, 618
         }

@@ -2,24 +2,22 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OnePunch;
+using OnePunchDbContext;
 
 #nullable disable
 
-namespace OnePunch.Migrations
+namespace OnePunchDbContext.Migrations
 {
     [DbContext(typeof(OnePunchContext))]
-    [Migration("20220129165000_Intial")]
-    partial class Intial
+    partial class OnePunchContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.1");
 
-            modelBuilder.Entity("backend.Models.Record", b =>
+            modelBuilder.Entity("OnePunchDbContext.Models.Orotime", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -28,7 +26,7 @@ namespace OnePunch.Migrations
                     b.Property<bool>("IsIn")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTimeOffset>("RecordAt")
+                    b.Property<DateTimeOffset>("PunchAt")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("UserId")
@@ -36,7 +34,7 @@ namespace OnePunch.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Records");
+                    b.ToTable("Orotime");
                 });
 #pragma warning restore 612, 618
         }

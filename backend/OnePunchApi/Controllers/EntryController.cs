@@ -1,9 +1,10 @@
 ﻿#nullable disable
-using backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnePunch.Dto;
 using OnePunch.Utils;
+using OnePunchDbContext;
+using OnePunchDbContext.Models;
 
 namespace OnePunch.Controllers
 {
@@ -11,25 +12,25 @@ namespace OnePunch.Controllers
     [ApiController]
     public class EntryController : ControllerBase
     {
-        private readonly OnePunchContext _context;
+        private readonly OnePunchContext context;
 
         public EntryController(OnePunchContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         // GET: api/entries
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<EntryDto>>> GetRecords()
+        public async Task<ActionResult<IEnumerable<OrotimeDto>>> GetRecords()
         {
-            return await _context.Entries.Select(e => e.ToDto()).ToListAsync();
+            return await context.Orotimes.Select(e => e.ToDto()).ToListAsync();
         }
 
         // GET: api/entries/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<EntryDto>> GetRecord(int id)
+        public async Task<ActionResult<OrotimeDto>> GetRecord(int id)
         {
-            var entry = await _context.Entries.FindAsync(id);
+            var entry = await context.Orotimes.FindAsync(id);
 
             if (entry == null)
             {
@@ -41,14 +42,14 @@ namespace OnePunch.Controllers
 
         // PUT: api/entries/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRecord(int id, EntryDto entry)
+        public async Task<IActionResult> PutRecord(int id, OrotimeDto entry)
         {
             if (id != entry.Id)
             {
                 return BadRequest();
             }
 
-            var dbEntry = await _context.Entries.FindAsync(id);
+            var dbEntry = await context.Orotimes.FindAsync(id);
 
             if (dbEntry == null)
             {
@@ -59,7 +60,7 @@ namespace OnePunch.Controllers
             
             try
             {
-                await _context.SaveChangesAsync();
+                await context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException) when (!EntryExists(id))
             {
@@ -71,13 +72,13 @@ namespace OnePunch.Controllers
 
         // POST: api/entries
         [HttpPost]
-        public async Task<ActionResult<EntryDto>> PostRecord(EntryDto entry)
+        public async Task<ActionResult<OrotimeDto>> PostRecord(OrotimeDto entry)
         {
-            var dbEntry = new Entry();
+            var dbEntry = new Orotime();
             dbEntry.Map(entry);
 
-            _context.Entries.Add(dbEntry);
-            await _context.SaveChangesAsync();
+            context.Orotimes.Add(dbEntry);
+            await context.SaveChangesAsync();
 
             return CreatedAtAction("GetRecord", new { id = dbEntry.Id }, dbEntry.ToDto());
         }
@@ -86,14 +87,14 @@ namespace OnePunch.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRecord(int id)
         {
-            var @record = await _context.Entries.FindAsync(id);
+            var @record = await context.Orotimes.FindAsync(id);
             if (@record == null)
             {
                 return NotFound();
             }
 
-            _context.Entries.Remove(@record);
-            await _context.SaveChangesAsync();
+            context.Orotimes.Remove(@record);
+            await context.SaveChangesAsync();
 
             return NoContent();
         }
@@ -101,7 +102,7 @@ namespace OnePunch.Controllers
 
         private bool EntryExists(int id)
         {
-            return _context.Entries.Any(e => e.Id == id);
+            return context.Orotimes.Any(e => e.Id == id);
         }
     }
 }

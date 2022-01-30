@@ -1,8 +1,8 @@
-﻿using backend.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using OnePunchDbContext.Models;
 
-namespace OnePunch
+namespace OnePunchDbContext
 {
     public class OnePunchContext : DbContext
     {
@@ -19,6 +19,6 @@ namespace OnePunch
             }
         }
 
-        public DbSet<Entry> Entries { get; set; }
+        public DbSet<Orotime> Orotimes => Set<Orotime>();
     }
 }

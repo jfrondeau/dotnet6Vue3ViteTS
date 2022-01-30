@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using OnePunch;
+using OnePunchDbContext;
 
 var builder = WebApplication.CreateBuilder(args);
 

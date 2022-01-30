@@ -1,6 +1,6 @@
 ﻿namespace OnePunch.Dto
 {
-    public class EntryDto
+    public class OrotimeDto
     {
         /// <summary>
         /// id
