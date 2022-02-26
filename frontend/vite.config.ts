@@ -42,6 +42,7 @@ export default defineConfig({
       "/api": {
         target: "https://localhost:5001",
         secure: false,
+        changeOrigin: true,
       },
     },
     port: 5002,

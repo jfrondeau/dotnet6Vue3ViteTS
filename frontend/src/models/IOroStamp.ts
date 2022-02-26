@@ -1,6 +1,6 @@
 export default interface IOroStamp {
   id: number
   userId: number
-  punchAt: string
+  punchAt: Date
   isIn: Boolean
 }
